@@ -171,6 +171,7 @@ class FreeplayState extends MusicBeatState
 		if (curPlaying)
 		{
 			iconArray[instPlaying].canBounce = true;
+			iconArray[instPlaying].animation.curAnim.curFrame = 2;
 		}
 
 		changeSelection();
@@ -445,8 +446,12 @@ class FreeplayState extends MusicBeatState
 				instPlaying = curSelected;
 				Conductor.changeBPM(PlayState.SONG.bpm);
 				for (i in 0...iconArray.length)
+				{
 					iconArray[i].canBounce = false;
+					iconArray[i].animation.curAnim.curFrame = 0;
+				}
 				iconArray[instPlaying].canBounce = true;
+				iconArray[instPlaying].animation.curAnim.curFrame = 2;
 				curPlaying = true;
 				#end
 			}
