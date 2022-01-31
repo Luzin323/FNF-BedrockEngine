@@ -39,10 +39,12 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 	private var boyfriend:Character = null;
 	private var previewNotes:AttachedSprite;
+	private var previewJudgements:AttachedSprite;
 	private var descBox:FlxSprite;
 	private var descText:FlxText;
 
 	private var previewNoteOption:Option;
+	private var previewJudgementOption:Option;
 
 	public var title:String;
 	public var rpcTitle:String;
@@ -130,9 +132,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				colorSwap.brightness = ClientPrefs.arrowHSV[2][2] / 100;
 
 				previewNotes = new AttachedSprite();
-				previewNotes.loadGraphic(Paths.image('previewNotes'), true, 164, 164);
+				previewNotes.loadGraphic(Paths.image('noteGrid'), true, 164, 164);
 				previewNotes.shader = colorSwap.shader;
-				previewNotes.animation.add('frames', [0, 1, 2/*, 3, 4*/], 0);
+				previewNotes.animation.add('frames', [0, 1, 2, 3, 4], 0);
 				previewNotes.animation.play('frames');
 				previewNotes.sprTracker = textChild;
 				previewNoteOption = optionsArray[i];
@@ -141,7 +143,21 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				previewNotes.yAdd = 20;
 				add(previewNotes);
 				updateNotes();
-			}
+			/*if(optionsArray[i].showMarv && previewJudgements == null)
+			{
+				previewJudgements = new AttachedSprite();
+				previewJudgements.loadGraphic(Paths.image('judgementGrid'), true, 164, 164);
+				previewJudgements.shader = colorSwap.shader;
+				previewJudgements.animation.add('frames', [0, 1], 0);
+				previewJudgements.animation.play('frames');
+				previewJudgements.sprTracker = textChild;
+				previewJudgementOption = optionsArray[i];
+				previewJudgements.setGraphicSize(Std.int(previewJudgements.width * 0.7));
+				previewJudgements.updateHitbox();
+				previewJudgements.yAdd = 20;
+				add(previewJudgements);
+				updateJudgements();
+			}*/
 			updateTextFrom(optionsArray[i]);
 		}
 
@@ -154,6 +170,11 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		previewNotes.animation.curAnim.curFrame = previewNoteOption.curOption;
 		previewNotes.xAdd = previewNotes.sprTracker.width + 20;
 	}
+	/*public function updateJudgements()
+	{
+		previewJudgements.animation.curAnim.curFrame = previewJudgementOption.curOption;
+		previewJudgements.xAdd = previewJudgements.sprTracker.width + 20;
+	}*/
 
 	public function addOption(option:Option) {
 		if(optionsArray == null || optionsArray.length < 1) optionsArray = [];
@@ -353,6 +374,14 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		{
 			boyfriend.visible = optionsArray[curSelected].showBoyfriend;
 		}
+		if(previewNotes != null)
+		{
+			previewNotes.visible = optionsArray[curSelected].showNotes;
+		}
+		/*if(previewJudgements != null)
+		{
+			previewJudgements.visible = optionsArray[curSelected].showMarv;
+		}*/
 		curOption = optionsArray[curSelected]; //shorter lol
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}

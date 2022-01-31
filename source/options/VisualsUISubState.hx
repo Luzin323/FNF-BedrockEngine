@@ -84,6 +84,8 @@ class VisualsUISubState extends BaseOptionsMenu
 
 			var option:Option = new Option('Judgement Skin:', "What should your Judgements look like?", 'uiSkin', 'string', 'Bedrock',
 		['Classic', 'Bedrock'/*, 'Score'*/]);
+		/*option.showMarv = true;
+		option.onChange = onChangeJudgSkin;*/
 		addOption(option);
 
 			var option:Option = new Option('Note Skin:', "Funny Notes, going up and down, How should they look like?", 'noteSkin', 'string', 'Default',
@@ -102,6 +104,11 @@ class VisualsUISubState extends BaseOptionsMenu
 	function onChangeNoteSkin()
 	{
 		updateNotes();
+	}
+
+	function onChangeJudgSkin()
+	{
+		updateJudgements();
 	}
 
 	/*function onChangeJudgSkin()
