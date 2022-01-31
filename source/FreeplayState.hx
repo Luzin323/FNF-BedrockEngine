@@ -542,12 +542,12 @@ class FreeplayState extends MusicBeatState
 			case 0:
 				{
 					// scoreText.color = FlxColor.GREEN;
-					diffText.color = FlxColor.GREEN;
+					diffText.color = FlxColor.LIME;
 				}
 			case 1:
 				{
 					// scoreText.color = FlxColor.WHITE;
-					diffText.color = FlxColor.WHITE;
+					diffText.color = FlxColor.YELLOW;
 				}
 			case 2:
 				{
