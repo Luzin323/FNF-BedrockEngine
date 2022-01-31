@@ -106,11 +106,6 @@ class VisualsUISubState extends BaseOptionsMenu
 		updateNotes();
 	}
 
-	function onChangeJudgSkin()
-	{
-		updateJudgements();
-	}
-
 	/*function onChangeJudgSkin()
 	{
 		updateJudgements();
